@@ -21,9 +21,12 @@ def get_last_commit():
 def get_git_diff():
 
     commit = repo.head.commit
-
-    parent = commit.parents[0]
-
-    diff = repo.git.diff(parent, commit)
+    
+    if not commit.parents:
+        # 4b825dc642cb6eb9a060e54bf8d69288fbee4904 is the universal git empty tree hash
+        diff = repo.git.diff("4b825dc642cb6eb9a060e54bf8d69288fbee4904", commit.hexsha)
+    else:
+        parent = commit.parents[0]
+        diff = repo.git.diff(parent.hexsha, commit.hexsha)
 
     return diff

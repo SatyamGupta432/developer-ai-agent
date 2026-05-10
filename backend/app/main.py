@@ -16,7 +16,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -25,30 +25,42 @@ app.add_middleware(
 @app.get("/analyze")
 def analyze_commit():
 
-    commit = get_last_commit()
+    try:
+        commit = get_last_commit()
+        diff = get_git_diff()
 
-    diff = get_git_diff()
+        documentation = generate_documentation(
+            commit["message"],
+            diff
+        )
 
-    documentation = generate_documentation(
-        commit["message"],
-        diff
-    )
+        markdown_path = save_markdown(
+            commit["message"],
+            documentation
+        )
 
-    markdown_path = save_markdown(
-        commit["message"],
-        documentation
-    )
+        pdf_path = f"reports/{commit['hash']}.pdf"
 
-    pdf_path = f"reports/{commit['hash']}.pdf"
+        try:
+            generate_pdf(
+                documentation,
+                pdf_path
+            )
+        except Exception as e:
+            print(f"PDF Generation failed: {e}")
+            pdf_path = "Error generating PDF"
 
-    generate_pdf(
-        documentation,
-        pdf_path
-    )
-
-    return {
-        "commit": commit,
-        "documentation": documentation,
-        "markdown": markdown_path,
-        "pdf": pdf_path
-    }
+        return {
+            "commit": commit,
+            "documentation": documentation,
+            "markdown": markdown_path,
+            "pdf": pdf_path
+        }
+    except Exception as e:
+        return {
+            "error": str(e),
+            "commit": None,
+            "documentation": "Error: " + str(e),
+            "markdown": None,
+            "pdf": None
+        }
