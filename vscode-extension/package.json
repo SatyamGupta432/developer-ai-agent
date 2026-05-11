@@ -1,0 +1,22 @@
+{
+  "name": "ai-agent-docs",
+  "displayName": "AI Agent Docs",
+  "description": "Generate AI documentation for your last commit",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "ai-agent-docs.analyze",
+        "title": "AI Agent: Analyze Last Commit"
+      }
+    ]
+  }
+}
