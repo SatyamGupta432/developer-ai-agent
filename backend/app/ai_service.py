@@ -20,12 +20,14 @@ def generate_documentation(commit, diff):
 
     Generate:
 
-    1. Feature Name
-    2. Summary
-    3. Technical Changes
-    4. Testing Checklist
-    5. Risks
-    6. Engineering Tasks
+    1. Feature Name (Title)
+    2. Summary (Brief overview)
+    3. Files Changed (List of files modified)
+    4. Technical Changes (Detailed list of changes)
+    5. AI Notes (Key takeaways and suggestions)
+    6. Testing Checklist (What to test)
+    7. Risks (Potential issues)
+    8. Engineering Tasks (Next steps)
 
     Format properly in markdown.
     """

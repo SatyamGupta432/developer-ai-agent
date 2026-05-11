@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import ActionPanel from "@/components/ActionPanel";
 import AnalysisResult from "@/components/AnalysisResult";
 import HistorySidebar from "@/components/HistorySidebar";
+import RecentReports from "@/components/RecentReports";
 import { analysisService } from "@/services/api";
 
 export default function Home() {
@@ -63,6 +64,8 @@ export default function Home() {
           />
         </div>
       </div>
+
+      <RecentReports />
     </main>
   );
 }

@@ -15,6 +15,18 @@ export default function Header() {
 
       <div className="absolute top-0 right-0 flex gap-4">
         <Link 
+          href="/dashboard"
+          className="text-xs bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all text-white"
+        >
+          Dashboard
+        </Link>
+        <Link 
+          href="/reports"
+          className="text-xs bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all text-white"
+        >
+          Reports
+        </Link>
+        <Link 
           href="/login"
           className="text-xs bg-white/5 hover:bg-white/10 border border-white/10 px-4 py-2 rounded-lg transition-all text-white"
         >

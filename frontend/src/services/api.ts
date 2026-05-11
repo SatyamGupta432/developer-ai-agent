@@ -22,6 +22,7 @@ export const analysisService = {
   analyzeLocal: () => apiCall("/analyze"),
   analyzeRemote: (repoName: string) => apiCall(`/remote/analyze?repo_name=${repoName}`),
   getHistory: () => apiCall("/history"),
+  getReports: () => apiCall("/reports"),
   exportExcel: () => apiCall("/export/excel"),
 };
 
